@@ -17,6 +17,8 @@ module.exports = function() {
   // Register EJS as a template engine.
   this.engine('ejs', require('ejs').__express);
 
+  // Register mongoose as the datastore
+  this.datastore(require('locomotive-mongoose'));
   // Override default template extension.  By default, Locomotive finds
   // templates using the `name.format.engine` convention, for example
   // `index.html.ejs`  For some template engines, such as Jade, that find

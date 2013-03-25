@@ -4,8 +4,10 @@
   "private": true,
   "dependencies": {
     "locomotive": "0.3.x",
+    "locomotive-mongoose": "0.1.0",
     "express": "3.x.x",
     "connect-powered-by": "0.1.x",
-    "ejs": "0.8.x"
+    "ejs": "0.8.x",
+    "mongoose": "3.6.0"
   }
 }
