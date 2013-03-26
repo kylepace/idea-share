@@ -1,3 +1,5 @@
+var passport = require('passport');
+
 // Draw routes.  Locomotive's router provides expressive syntax for drawing
 // routes, including support for resourceful routes, namespaces, and nesting.
 // MVC routes can be mapped mapped to controllers using convenient
@@ -7,4 +9,14 @@
 // information.
 module.exports = function routes() {
   this.root('pages#main');
+  
+  this.get('/auth/google',
+  passport.authenticate('google'));
+
+this.get('/auth/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
 };

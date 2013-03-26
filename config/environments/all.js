@@ -1,7 +1,35 @@
 var express = require('express')
   , poweredBy = require('connect-powered-by')
-  , util = require('util');
+  , util = require('util')
+  , passport = require('passport')
+  , GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
+passport.use(new GoogleStrategy({
+    clientID: "522473818235.apps.googleusercontent.com",
+    clientSecret: "kumf-sCLda_FzIeWLg0gscUw",
+    callbackURL: "http://localhost:3000/auth/google/callback",
+	scope: "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    console.log("here i am " + profile.id);
+	// User.findOrCreate({ googleId: profile.id }, function (err, user) {
+      // return done(err, user);
+    // });
+	return done();
+  }
+));
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  // User.findById(id, function(err, user) {
+    // done(err, user);
+  // });
+  console.log("here i am33");
+});
+  
 module.exports = function() {
   // Warn of version mismatch between global "lcm" binary and local installation
   // of Locomotive.
@@ -42,5 +70,9 @@ module.exports = function() {
   this.use(express.static(__dirname + '/../../public'));
   this.use(express.bodyParser());
   this.use(express.methodOverride());
+  this.use(express.cookieParser());
+  this.use(express.session({ secret: 'these are my ideas' }));
+  this.use(passport.initialize());
+  this.use(passport.session());
   this.use(this.router);
 }
