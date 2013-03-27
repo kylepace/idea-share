@@ -2,7 +2,8 @@ var express = require('express')
   , poweredBy = require('connect-powered-by')
   , util = require('util')
   , passport = require('passport')
-  , GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+  , GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
+  , User = require('User');
 
 passport.use(new GoogleStrategy({
     clientID: "522473818235.apps.googleusercontent.com",
@@ -11,10 +12,9 @@ passport.use(new GoogleStrategy({
 	scope: "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log("here i am " + profile.id);
-	// User.findOrCreate({ googleId: profile.id }, function (err, user) {
-      // return done(err, user);
-    // });
+	 User.findOrCreate({ googleId: profile.id }, function (err, user) {
+       return done(err, user);
+     });
 	return done();
   }
 ));
@@ -27,7 +27,6 @@ passport.deserializeUser(function(id, done) {
   // User.findById(id, function(err, user) {
     // done(err, user);
   // });
-  console.log("here i am33");
 });
   
 module.exports = function() {
