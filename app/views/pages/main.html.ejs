@@ -6,9 +6,38 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <ul id="ideas"></ul>
+
+    <div id="app">
+    	<form id="save-idea">
+    		<!-- ADD ANTIFORGERY! -->
+	    	<input type="text" id="idea-name" />
+
+	    	<input type="text" id="idea-description" />
+
+	    	<input type="submit" id="idea-save" value="Share" />
+	    </form>
+
+	    <ul id="ideas"></ul>
+    </div>
+    
+  	<script src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.0/zepto.min.js" type="text/javascript"></script>
   	<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js" type="text/javascript"></script>
   	<script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.10/backbone-min.js" type="text/javascript"></script>
+  	
+  	<script src="/js/app.js" type="text/javascript"></script>
+
+  	<script src="/js/views/appView.js" type="text/javascript"></script>
   	<script src="/js/models/idea.js" type="text/javascript"></script>
+		<script src="/js/views/ideaView.js" type="text/javascript"></script>
+
+  	<script type="text/template" id="idea-template">
+  		<li>{{= name }}</li>
+  	</script>
+
+  	<script type="text/javascript">
+  		$(function() {
+  			var app = new IdeaShare.Views.AppView();
+  		});
+  	</script>
   </body>
 </html>
