@@ -3,7 +3,7 @@ var express = require('express')
   , util = require('util')
   , passport = require('passport')
   , GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
-  , User = require('User');
+  , User = require('../../app/models/User');
 
 passport.use(new GoogleStrategy({
     clientID: "522473818235.apps.googleusercontent.com",
@@ -12,10 +12,10 @@ passport.use(new GoogleStrategy({
 	scope: "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
   },
   function(accessToken, refreshToken, profile, done) {
-	 User.findOrCreate({ googleId: profile.id }, function (err, user) {
-       return done(err, user);
-     });
-	return done();
+    User.findOrCreate({ googleId: profile.id }, function (err, user) {
+         return done(err, user);
+       });
+  	return done();
   }
 ));
 
@@ -28,7 +28,7 @@ passport.deserializeUser(function(id, done) {
     // done(err, user);
   // });
 });
-  
+
 module.exports = function() {
   // Warn of version mismatch between global "lcm" binary and local installation
   // of Locomotive.
