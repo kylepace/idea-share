@@ -12,12 +12,11 @@
     		<!-- ADD ANTIFORGERY! -->
 	    	<input type="text" id="idea-name" />
 
-	    	<input type="text" id="idea-description" />
-
 	    	<input type="submit" id="idea-save" value="Share" />
 	    </form>
 
 	    <ul id="ideas"></ul>
+	    <div id="idea-details"></div>
     </div>
     
   	<script src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.0/zepto.min.js" type="text/javascript"></script>
@@ -29,9 +28,17 @@
   	<script src="/js/views/appView.js" type="text/javascript"></script>
   	<script src="/js/models/idea.js" type="text/javascript"></script>
 		<script src="/js/views/ideaView.js" type="text/javascript"></script>
+		<script src="/js/views/ideaDetailsView.js" type="text/javascript"></script>
 
-  	<script type="text/template" id="idea-template">
-  		<li>{{= name }}</li>
+  	<script type="text/template" id="idea-listitem-template">{{= name }}</script>
+
+  	<script type="text/template" id="idea-details-template">
+  		<a href="#" id="back-to-ideas">Back To Ideas</a>
+  		<div>
+  			<h2>{{= name}}</h2>
+  			<label for="idea-description">Describe the idea</label>
+  			<textarea rows="10" cols="20" id="idea-description"></textarea>
+  		</div>
   	</script>
 
   	<script type="text/javascript">
