@@ -9,11 +9,11 @@ var passport = require('passport');
 // information.
 module.exports = function routes() {
     this.root('pages#main');
-  
+
     this.get('/auth/google',
-    passport.authenticate('google'));
+        passport.authenticate('google'));
 
-    this.get('/auth/google/callback', 
-        passport.authenticate('google', {  successRedirect: '/', failureRedirect: '/login' }));
+    this.get('/auth/google/callback',
+        passport.authenticate('google', { successRedirect: '/', failureRedirect: '/login' }));
 
- };
+};
