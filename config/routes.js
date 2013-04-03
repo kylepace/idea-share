@@ -8,15 +8,12 @@ var passport = require('passport');
 // Guide on [routing](http://locomotivejs.org/guide/routing.html) for additional
 // information.
 module.exports = function routes() {
-  this.root('pages#main');
+    this.root('pages#main');
   
-  this.get('/auth/google',
-  passport.authenticate('google'));
+    this.get('/auth/google',
+    passport.authenticate('google'));
 
-this.get('/auth/google/callback', 
-  passport.authenticate('google', { failureRedirect: '/login' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/');
-  });
-};
+    this.get('/auth/google/callback', 
+        passport.authenticate('google', {  successRedirect: '/', failureRedirect: '/login' }));
+
+ };
