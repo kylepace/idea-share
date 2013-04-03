@@ -14,6 +14,11 @@ module.exports = function routes() {
         passport.authenticate('google'));
 
     this.get('/auth/google/callback',
-        passport.authenticate('google', { successRedirect: '/', failureRedirect: '/login' }));
+        passport.authenticate('google', { successRedirect: '/', failureRedirect: '/error' }));
+
+    this.get('/logout', function (req, res) {
+        req.logout();
+        res.redirect('/');
+    });
 
 };

@@ -2,6 +2,32 @@
 <html>
     <head>
         <title><%= title %></title>
-        <link rel="stylesheet" href="/stylesheets/style.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/main.css" />
     </head>
     <body>
+		<header class="container-fluid">
+			<div class="navbar">
+				<div class="navbar-inner">
+					<a class="brand" href="#">Idea Share</a>
+					<nav class="nav-collapse collapse">
+						<div class="user-info">
+							<% if (user) { %> 
+								<p>Welcome, <a href="#"><%= user.name %></a></p>
+								<div class="btn-group">
+									<a class="btn btn-mini btn-info" href="/"><span class="awe-cogs"></span></a>
+									<a class="btn btn-mini btn-info" href="/logout"><span class="awe-signout"></span></a>
+								</div>
+							<% } else { %>
+								<div> 
+									<a class="btn btn-mini btn-info" href="/auth/google">Login with Google</a>
+								</div>								
+							<% } %>
+						</div>
+					</nav>
+				</div>
+			</div>
+		</header>
+
+		<div id="wrap">
+			<div class="container" role="main">
