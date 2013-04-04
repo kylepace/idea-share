@@ -1,33 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
+		<meta charset="utf-8">
         <title><%= title %></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/css/main.css" />
+		<link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="/css/custom.css" rel="stylesheet">
+		<link href="/css/bootstrap-responsive.css" rel="stylesheet">
+
     </head>
     <body>
-		<header class="container-fluid">
+		<div class="wrap">
+		<div class="container">
 			<div class="navbar">
-				<div class="navbar-inner">
-					<a class="brand" href="#">Idea Share</a>
-					<nav class="nav-collapse collapse">
-						<div class="user-info">
-							<% if (user) { %> 
-								<p>Welcome, <a href="#"><%= user.name %></a></p>
-								<div class="btn-group">
-									<a class="btn btn-mini btn-info" href="/"><span class="awe-cogs"></span></a>
-									<a class="btn btn-mini btn-info" href="/logout"><span class="awe-signout"></span></a>
-								</div>
-							<% } else { %>
-								<div> 
-									<a class="btn btn-mini btn-info" href="/auth/google">Login with Google</a>
-								</div>								
-							<% } %>
-						</div>
-					</nav>
-				</div>
+			  <div class="navbar-inner">
+				<a href="/" class="brand">Idea Share</a>
+				<ul class="nav">
+					<li><a href="#">About</a></li>				  
+				</ul>
+				<ul class="nav pull-right">
+					<% if (user) { %>
+						<li><p class="navbar-text">Welcome, <%= user.name %></p></li>
+						<li><a href="/logout">Logout</a></li>
+					<% } else { %>
+						<li><a href="/auth/google">Login</a></li>
+					<% } %>
+				</ul>
+			  </div>
 			</div>
-		</header>
+			<hr>
 
-		<div id="wrap">
-			<div class="container" role="main">

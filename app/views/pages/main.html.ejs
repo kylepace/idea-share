@@ -1,35 +1,17 @@
 <% include ../shared/header.html.ejs %>
 
-<section class="page-header">
-	<h1>Record Your Ideas!</h1>
-	<p>This is meant as a quick jot your idea down application.</p>
-</section>
-
 <div class="row-fluid">
-	<article class="data-block span12">
-		<header>
-			<h2>Idea List</h2>
-			<!--<div class="data-header-actions">
-				<form class="search-box" action="/">
-					<input type="text" name="search">
-					<button class="btn btn-tachyon btn-primary">Search</button>
-				</form>
-			</div>-->
-		</header>
-		<section>
-			<div id="app">
-				<form id="save-idea">
-					<!-- ADD ANTIFORGERY! -->
-					<input type="text" id="idea-name" />
+	<div id="app">
+		<form id="save-idea">
+			<!-- ADD ANTIFORGERY! -->
+			<input type="text" id="idea-name" />
 
-					<input type="submit" id="idea-save" value="Share" />
-				</form>
+			<input type="submit" id="idea-save" value="Share" />
+		</form>
 
-				<ul id="ideas"></ul>
-				<div id="idea-details"></div>
-			</div>
-		</section>
-	</article>
+		<ul id="ideas"></ul>
+		<div id="idea-details"></div>
+	</div>
 </div>
 
 <% include ../shared/footerScripts.html.ejs %>
